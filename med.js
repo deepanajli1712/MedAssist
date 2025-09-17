@@ -249,40 +249,40 @@ document.getElementById('findHospitalsBtn').onclick = function(e) {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.kit-option input[type="checkbox"]');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const kitStatus = document.getElementById('kitStatus');
-    const totalItems = checkboxes.length;
+// document.addEventListener('DOMContentLoaded', function() {
+//     const checkboxes = document.querySelectorAll('.kit-option input[type="checkbox"]');
+//     const progressBar = document.getElementById('progressBar');
+//     const progressText = document.getElementById('progressText');
+//     const kitStatus = document.getElementById('kitStatus');
+//     const totalItems = checkboxes.length;
 
-    function updateProgress() {
-        const checkedItems = document.querySelectorAll('.kit-option input[type="checkbox"]:checked').length;
-        const percentage = (checkedItems / totalItems) * 100;
+//     function updateProgress() {
+//         const checkedItems = document.querySelectorAll('.kit-option input[type="checkbox"]:checked').length;
+//         const percentage = (checkedItems / totalItems) * 100;
         
-        progressBar.style.width = percentage + '%';
-        progressText.textContent = `${checkedItems}/${totalItems} items selected`;
+//         progressBar.style.width = percentage + '%';
+//         progressText.textContent = `${checkedItems}/${totalItems} items selected`;
         
-        if (checkedItems > totalItems / 2) {
-            kitStatus.textContent = '🎉 You are now OFFLINE ready!';
-            kitStatus.className = 'kit-status offline-ready';
-        } else if (checkedItems > 0) {
-            kitStatus.textContent = `${Math.ceil(totalItems / 2) - checkedItems + 1} more items needed for offline readiness`;
-            kitStatus.className = 'kit-status';
-            kitStatus.style.color = '#666';
-        } else {
-            kitStatus.textContent = 'Start building your emergency kit';
-            kitStatus.className = 'kit-status';
-            kitStatus.style.color = '#666';
-        }
-    }
+//         if (checkedItems > totalItems / 2) {
+//             kitStatus.textContent = '🎉 You are now OFFLINE ready!';
+//             kitStatus.className = 'kit-status offline-ready';
+//         } else if (checkedItems > 0) {
+//             kitStatus.textContent = `${Math.ceil(totalItems / 2) - checkedItems + 1} more items needed for offline readiness`;
+//             kitStatus.className = 'kit-status';
+//             kitStatus.style.color = '#666';
+//         } else {
+//             kitStatus.textContent = 'Start building your emergency kit';
+//             kitStatus.className = 'kit-status';
+//             kitStatus.style.color = '#666';
+//         }
+//     }
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
+//     checkboxes.forEach(checkbox => {
+//         checkbox.addEventListener('change', updateProgress);
+//     });
 
-    updateProgress();
-});
+//     updateProgress();
+// });
 
 const healthyTips = [
     "Drinking a glass of warm water in the morning helps flush out toxins, jumpstarts your metabolism, and aids digestion. Add a slice of lemon for extra benefits like improved immunity and skin health.",
@@ -385,4 +385,5 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         });
     }
+
 });
