@@ -10,7 +10,7 @@
 body {
     background-color: #f7f3fa;
     color: #333;
-    
+
 
 }
 
@@ -19,8 +19,8 @@ header {
     top: 0;
     z-index: 1000;
 
-   
-    
+
+
 }
 
 .header {
@@ -57,7 +57,7 @@ header {
 
 .head-logo {
     position: relative;
-    width: 25px;
+    width: 27px;
     height: 25px;
 }
 
@@ -174,7 +174,7 @@ header {
 }
 
 .pages {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     color: black;
     text-decoration: none;
@@ -201,10 +201,14 @@ main {
     position: relative;
     top: 30%;
     gap: 20px;
+     display:block; /* keeps size tight around text */
+    animation: moveLeftRight 4s ease-in-out infinite;
 
+    text-align: center;
+    /* padding: 20px; */
 }
 
-#languageSelect{
+#languageSelect {
     padding: 8px 12px;
     font-size: 16px;
     border-radius: 6px;
@@ -213,6 +217,9 @@ main {
     color: #333;
     transition: border-color 0.2s, background-color 0.2s;
 }
+
+
+
 .centre-text {
     opacity: 0;
     transform: translate(30px);
@@ -223,7 +230,23 @@ main {
 
 .main-content p {
     font-size: 1.3rem;
-    ;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideRight 1.2s 0.5s ease-out forwards, moveLeftRight 4s ease-in-out infinite 2s;
+    font-style: italic;
+
+}
+
+@keyframes moveLeftRight {
+    0% {
+        transform: translateX(-30px);
+    }
+    50% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(-30px);
+    }
 }
 
 @keyframes fadeSlideIn {
@@ -718,9 +741,12 @@ main {
 
 
 @keyframes pulseGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
     }
+
     50% {
         box-shadow: 0 4px 16px rgba(76, 175, 80, 0.6);
     }
@@ -762,6 +788,8 @@ main {
     height: 30px;
     position: relative;
     bottom: 7px;
+    /* margin-right: 10px;
+    vertical-align: middle; */
 }
 
 .location-btn {
@@ -802,6 +830,15 @@ main {
     border-radius: 16px;
     padding: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
+    /* width: 220px;
+    background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(167, 124, 207, 0.10);
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
 
 }
 
@@ -883,12 +920,24 @@ main {
 }
 
 footer {
+    /* background-color: #535355fd;
+    color: #e0e0e0;
+    padding-top: 45px;
+    margin-top: 50px;
+    border-top: 4px solid #a77ccf; */
     background-color: #938d8c;
     padding: 20px;
     text-align: center;
 }
 
 .footer-container {
+    /* display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 25px 25px 25px;
+    max-width: 1200px;
+    margin: 0 auto; */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -896,6 +945,8 @@ footer {
 }
 
 .footer-section {
+    /* flex: 1;
+    min-width: 260px; */
     flex: 1;
     min-width: 200px;
 }
@@ -936,10 +987,141 @@ footer {
 }
 
 .footer-bottom {
+    /* text-align: center;
+    padding: 18px 0;
+    background-color: #333334;
+    border-top: 1px solid #444;
+    margin-top: 25px;
+    font-size: 0.95rem; */
     margin-top: 20px;
 }
 
+/* @media (max-width: 700px) {
+    .remedies-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
 
+    .remedy-box {
+        max-width: 95vw;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .emergency-kit-section {
+        width: 95vw;
+        min-width: unset;
+        max-width: unset;
+        padding: 18px 8px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .emergency-kit-section,
+    .location-share-box {
+        width: 95vw;
+        max-width: unset;
+        margin: 18px auto;
+    }
+
+    div[style*="display: flex;"] {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .emergency-kit-section,
+    .location-share-box,
+    .find-hospitals-box {
+        width: 95vw;
+        max-width: unset;
+        margin: 18px auto;
+        line-height: 1.5;
+        font-weight: bold;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .header_options {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sideBar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .remedies-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .remedy-box {
+        width: 90%;
+    }
+
+    .emergency-kit-section {
+        width: 90%;
+    }
+
+    .location-share-box,
+    .healthy-tips-box {
+
+        width: 90%;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header_options {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .remedy-box {
+        width: 100%;
+    }
+
+    .emergency-kit-section,
+    .location-share-box,
+    .healthy-tips-box {
+        width: 100%;
+    }
+} */
 
 
 
@@ -947,29 +1129,40 @@ footer {
     .header {
         padding: 10px 15px;
     }
-    
-    .header_options,.sideBar{
+
+    .header_options,
+    .sideBar {
         display: none;
     }
-    #userIconMobile .user{
+
+    #userIconMobile .user {
         display: flex;
         align-items: center;
         gap: 10px;
     }
+
     .hamburger {
         display: flex;
     }
-    
+
     .mobile-nav {
         display: block;
     }
 
     .centre-text {
-        font-size: 35px;
+        opacity: 0;
+        transform: translate(30px);
+        animation: fadeSlideIn 2s ease-in-out forwards, moveLeftRight 3s ease-in-out infinite 2s;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 50px;
     }
-    
+
     .main-content p {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideRight 1.2s 0.5s ease-out forwards, moveLeftRight 4s ease-in-out infinite 2s;
+        font-style: italic;
     }
 
     .emergency-row {
@@ -979,7 +1172,7 @@ footer {
         gap: 10px;
         text-align: center;
     }
-    
+
     .emergency-call-btn {
         margin-left: 0;
         width: 100%;
@@ -990,24 +1183,65 @@ footer {
         font-size: 2rem;
         margin-top: 20px;
     }
-    
+
     .remedies-container {
         padding: 0 10px;
         gap: 20px;
     }
-    
+
     .remedy-box {
         width: 95%;
         height: auto;
         min-height: 350px;
+        justify-self: center;
     }
+
+    /* Justify text in remedy boxes */
+.remedy-box ul {
+    color: #333;
+    font-size: 1rem;
+    margin: 0;
+    padding-left: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.remedy-box li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.remedy-box h2 {
+    color: #d576b0;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-align: center; /* Keep heading centered */
+}
+
+/* Optional: Also justify other text content */
+.remedy-box p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* For better readability on smaller screens */
+@media (max-width: 768px) {
+    .remedy-box ul,
+    .remedy-box li {
+        text-align: left; /* Switch to left-align on mobile for better readability */
+    }
+}
+
 
     .emergency-kit-section {
         width: 95%;
         margin: 20px auto;
         padding: 20px 15px;
     }
-    
+
     .kit-heading {
         font-size: 1.6rem;
         text-align: center;
@@ -1019,11 +1253,11 @@ footer {
         width: 95%;
         margin: 20px auto;
     }
-    
+
     .healthy-tips-box h3 {
         font-size: 1.8rem;
     }
-    
+
     #healthyTipText {
         font-size: 1.1rem;
     }
@@ -1033,22 +1267,30 @@ footer {
     .header {
         padding: 8px 10px;
     }
-    
+
     .logo_div {
         font-size: 18px;
     }
-    
+
     .logo {
         height: 50px;
         width: 45px;
     }
 
     .centre-text {
-        font-size: 28px;
+        opacity: 0;
+        transform: translate(30px);
+        animation: fadeSlideIn 2s ease-in-out forwards, moveLeftRight 3s ease-in-out infinite 2s;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 50px;
     }
-    
+
     .main-content p {
-        font-size: 1rem;
+        font-size: 1.3rem;
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideRight 1.2s 0.5s ease-out forwards, moveLeftRight 4s ease-in-out infinite 2s;
+        font-style: italic;
     }
 
     .emergency-row {
@@ -1059,12 +1301,12 @@ footer {
     .remedies-heading {
         font-size: 1.8rem;
     }
-    
+
     .remedy-box {
         width: 100%;
         padding: 18px 15px;
     }
-    
+
     .remedy-box h2 {
         font-size: 1.2rem;
     }
@@ -1074,11 +1316,11 @@ footer {
         margin: 15px auto;
         padding: 18px 12px;
     }
-    
+
     .kit-heading {
         font-size: 1.4rem;
     }
-    
+
     .kit-option {
         font-size: 1rem;
     }
@@ -1090,11 +1332,11 @@ footer {
         margin: 15px auto;
         padding: 15px 10px;
     }
-    
+
     .healthy-tips-box h3 {
         font-size: 1.5rem;
     }
-    
+
     #healthyTipText {
         font-size: 1rem;
     }
@@ -1110,18 +1352,17 @@ footer {
         text-align: center;
         padding: 0 15px 20px 0;
     }
-    
+
     .section-divider {
         width: 90%;
         margin: 30px auto;
     }
-    
+
     .footer-container {
         padding: 0 15px;
     }
-    
+
     .footer-section h3 {
         font-size: 1.2rem;
     }
-
 }
