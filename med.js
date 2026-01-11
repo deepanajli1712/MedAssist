@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
      emergencyCallBtn.addEventListener('click', () => {
         const isConfirmed = confirm("Are you sure you want to call 911 for emergency services?");
         if (isConfirmed) {
-            window.location.href = 'tel:911';
+            window.location.href = 'tel:112';
         }
     });
 
@@ -387,3 +387,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
