@@ -1,128 +1,6 @@
-document.getElementById('userIcon').onclick = function(e) {
-    e.preventDefault();
-    document.getElementById('overlay').style.display = 'block';
-    const popup = document.getElementById('profilePopup');
-    popup.style.display = 'block';
-    popup.classList.add('show');
-    document.querySelector('main').classList.add('blur');
-    document.querySelector('header').classList.add('blur');
-};
-document.getElementById('closePopup').onclick = function() {
-    document.getElementById('overlay').style.display = 'none';
-    const popup = document.getElementById('profilePopup');
-    popup.classList.remove('show');
-    setTimeout(() => { popup.style.display = 'none'; }, 400); // Wait for animation
-    document.querySelector('main').classList.remove('blur');
-    document.querySelector('header').classList.remove('blur');
-};
-document.getElementById('overlay').onclick = function() {
-    document.getElementById('closePopup').onclick();
-};
-
-
-function showPopup(popupId) {
-    document.getElementById('overlay').style.display = 'block';
-    const popup = document.getElementById(popupId);
-    popup.style.display = 'block';
-    popup.classList.add('show');
-    document.querySelector('main').classList.add('blur');
-    document.querySelector('header').classList.add('blur');
-}
-function hidePopup(popupId) {
-    document.getElementById('overlay').style.display = 'none';
-    const popup = document.getElementById(popupId);
-    popup.classList.remove('show');
-    setTimeout(() => { popup.style.display = 'none'; }, 400);
-    document.querySelector('main').classList.remove('blur');
-    document.querySelector('header').classList.remove('blur');
-}
-
-document.getElementById('loginBtn').onclick = function() {
-    showPopup('loginPopup');
-};
-document.getElementById('signupBtn').onclick = function() {
-    showPopup('signupPopup');
-};
-document.getElementById('closeLogin').onclick = function() {
-    hidePopup('loginPopup');
-};
-document.getElementById('closeSignup').onclick = function() {
-    hidePopup('signupPopup');
-};
-document.getElementById('overlay').onclick = function() {
-    ['profilePopup', 'loginPopup', 'signupPopup'].forEach(hidePopup);
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('overlay');
-    const profilePopup = document.getElementById('profilePopup');
-    const loginPopup = document.getElementById('loginPopup');
-    const signupPopup = document.getElementById('signupPopup');
-
-    const userIcon = document.getElementById('userIcon');
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    const closePopup = document.getElementById('closePopup');
-    const closeLogin = document.getElementById('closeLogin');
-    const closeSignup = document.getElementById('closeSignup');
+    
     const emergencyCallBtn = document.getElementById('emergencyCallBtn');
-
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-
-    const profileName = document.getElementById('profileName');
-    const profileEmail = document.getElementById('profileEmail');
-
-    const showPopup = (popup) => {
-        overlay.style.display = 'block';
-        popup.style.display = 'block';
-        document.querySelector('main').classList.add('blur');
-        document.querySelector('header').classList.add('blur');
-    };
-
-    const hidePopups = () => {
-        overlay.style.display = 'none';
-        profilePopup.style.display = 'none';
-        loginPopup.style.display = 'none';
-        signupPopup.style.display = 'none';
-        document.querySelector('main').classList.remove('blur');
-        document.querySelector('header').classList.remove('blur');
-    };
-
-    const updateUIForLoggedInUser = (user) => {
-        loginBtn.style.display = 'none';
-        signupBtn.style.display = 'none';
-        userIcon.style.display = 'block'; 
-        profileName.textContent = user.username;
-        profileEmail.textContent = user.email;
-    };
-
-    const updateUIForLoggedOutUser = () => {
-        loginBtn.style.display = 'inline-block';
-        signupBtn.style.display = 'inline-block';
-        profileName.textContent = '';
-        profileEmail.textContent = '';
-    };
-
-    loginBtn.addEventListener('click', () => showPopup(loginPopup));
-    signupBtn.addEventListener('click', () => showPopup(signupPopup));
-
-    userIcon.addEventListener('click', (e) => {
-        e.preventDefault();
-        const loggedInUser = sessionStorage.getItem('loggedInUser');
-        if (loggedInUser) {
-            showPopup(profilePopup);
-        } else {
-            showPopup(loginPopup);
-        }
-    });
-
-    overlay.addEventListener('click', hidePopups);
-    closePopup.addEventListener('click', hidePopups);
-    closeLogin.addEventListener('click', hidePopups);
-    closeSignup.addEventListener('click', hidePopups);
 
      emergencyCallBtn.addEventListener('click', () => {
         const isConfirmed = confirm("Are you sure you want to call 112 for emergency services?");
@@ -130,84 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'tel:112';
         }
     });
-
-
-
-    signupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.getElementById('signupUsername').value;
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-
-        if (!username || !email || !password) {
-            alert('Please fill in all fields.');
-            return;
-        }
-
-        const userData = { username, email, password };
-
-        // IMPORTANT: Storing passwords in plain text is insecure and only for demonstration.
-        // In a real application, you would hash the password on a server.
-        localStorage.setItem('medAssistUser', JSON.stringify(userData));
-
-        // alert('Signup successful! Please log in.');
-        hidePopups();
-        showPopup(loginPopup); // Direct user to the login form
-        signupForm.reset();
-    });
-
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value;
-
-        const storedUserJSON = localStorage.getItem('medAssistUser');
-
-        if (!storedUserJSON) {
-            alert('No user found. Please sign up first.');
-            return;
-        }
-
-        const storedUser = JSON.parse(storedUserJSON);
-
-        if (username === storedUser.username && password === storedUser.password) {
-            // alert('Login successful!');
-            // Use sessionStorage to keep the user logged in for the current session
-            sessionStorage.setItem('loggedInUser', JSON.stringify(storedUser));
-            updateUIForLoggedInUser(storedUser);
-            hidePopups();
-            loginForm.reset();
-        } else {
-            alert('Invalid username or password.');
-        }
-    });
-
-    // --- Logout Logic ---
-    logoutBtn.addEventListener('click', () => {
-        sessionStorage.removeItem('loggedInUser');
-        alert('You have been logged out.');
-        updateUIForLoggedOutUser();
-        hidePopups();
-    });
-
-    // --- Initial Page Load Check ---
-    // This function checks if the user was already logged in during this session.
-    const checkLoginStatus = () => {
-        const loggedInUserJSON = sessionStorage.getItem('loggedInUser');
-        if (loggedInUserJSON) {
-            const user = JSON.parse(loggedInUserJSON);
-            updateUIForLoggedInUser(user);
-        } else {
-            updateUIForLoggedOutUser();
-        }
-    };
-
-    // Run the check when the page loads
-    checkLoginStatus();
 });
-
-
-
 
 let userLatitude = null;
 let userLongitude = null;
@@ -247,42 +48,6 @@ document.getElementById('findHospitalsBtn').onclick = function(e) {
         alert('Please share your location first by clicking the "Share Location" button.');
     }
 };
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const checkboxes = document.querySelectorAll('.kit-option input[type="checkbox"]');
-//     const progressBar = document.getElementById('progressBar');
-//     const progressText = document.getElementById('progressText');
-//     const kitStatus = document.getElementById('kitStatus');
-//     const totalItems = checkboxes.length;
-
-//     function updateProgress() {
-//         const checkedItems = document.querySelectorAll('.kit-option input[type="checkbox"]:checked').length;
-//         const percentage = (checkedItems / totalItems) * 100;
-        
-//         progressBar.style.width = percentage + '%';
-//         progressText.textContent = `${checkedItems}/${totalItems} items selected`;
-        
-//         if (checkedItems > totalItems / 2) {
-//             kitStatus.textContent = '🎉 You are now OFFLINE ready!';
-//             kitStatus.className = 'kit-status offline-ready';
-//         } else if (checkedItems > 0) {
-//             kitStatus.textContent = `${Math.ceil(totalItems / 2) - checkedItems + 1} more items needed for offline readiness`;
-//             kitStatus.className = 'kit-status';
-//             kitStatus.style.color = '#666';
-//         } else {
-//             kitStatus.textContent = 'Start building your emergency kit';
-//             kitStatus.className = 'kit-status';
-//             kitStatus.style.color = '#666';
-//         }
-//     }
-
-//     checkboxes.forEach(checkbox => {
-//         checkbox.addEventListener('change', updateProgress);
-//     });
-
-//     updateProgress();
-// });
 
 const healthyTips = [
     "Drinking a glass of warm water in the morning helps flush out toxins, jumpstarts your metabolism, and aids digestion. Add a slice of lemon for extra benefits like improved immunity and skin health.",
@@ -385,7 +150,4 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         });
     }
-
 });
-
-
