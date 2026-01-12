@@ -2,12 +2,21 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PN51SRQEX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3PN51SRQEX');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedAssist</title>
 </head>
+
 <link rel="stylesheet" href="med.css">
-<link rel="stylesheet" href="med.responsive.css">
 
 <body>
     <header>
@@ -26,21 +35,24 @@
 
                 <div class="header_option">
                     <img src="images/location.png" alt="Not Found" class="head-logo" />
-                    <div><a href="#" class="pages" data-key="nav-hospitals">Hospitals</a></div>
+                    <div><a href="#locationShareBox" class="pages" data-key="nav-hospitals">Hospitals</a></div>
                 </div>
 
                 <div class="header_option">
                     <img src="images/first-aid.png" alt="Not Found" class="head-logo" />
-                    <div><a href="#" class="pages" data-key="nav-first-aid">First Aid</a></div>
+                    <div><a href="#remediesHeading" class="pages" data-key="nav-first-aid">First Aid</a></div>
                 </div>
 
                 <div class="header_option">
                     <img src="images/heart.png" alt="Not Found" class="head-logo" />
-                    <div><a href="#" class="pages" data-key="nav-health-tips">Health Tips</a></div>
+                    <div><a href="#healthyTipsBox" class="pages" data-key="nav-health-tips">Health Tips</a></div>
                 </div>
 
-            </div> 
-            <div class="sideBar">                
+            </div>
+            <div class="sideBar">
+                <!-- <div class="sideBar-options">
+                    <img src="images/night-mode.png" alt="Night Mode" class="night-mode" id="nightModeIcon" />
+                </div> -->
                 <div class="sideBar-options">
                     <a href="#" id="userIcon">
                         <img src="images/user.png" alt="Not Found" class="user" />
@@ -71,18 +83,19 @@
             </div>
             <div class="header_option">
                 <img src="images/location.png" alt="Hospital" class="head-logo" />
-                <a href="#" class="pages">Hospitals</a>
+                <a href="#locationShareBox" class="pages">Hospitals</a>
             </div>
             <div class="header_option">
                 <img src="images/first-aid.png" alt="First Aid" class="head-logo" />
-                <a href="#" class="pages">First Aid</a>
+                <a href="#remediesHeading" class="pages">First Aid</a>
             </div>
             <div class="header_option">
                 <img src="images/heart.png" alt="Health Tips" class="head-logo" />
-                <a href="#" class="pages">Health Tips</a>
+                <a href="#healthyTipsBox" class="pages">Health Tips</a>
             </div>
 
             <div class="sideBar-mobile">
+
                 <a href="#" id="userIconMobile">
                     <img src="images/user.png" alt="User" class="user" />
                 </a>
@@ -147,7 +160,7 @@
             </form>
         </div>
     </div>
-    <h1 class="remedies-heading">Home Remedies</h1>
+    <h1 class="remedies-heading" id="remediesHeading">Home Remedies</h1>
     <div class="remedies-container">
         <div class="remedy-box">
             <h2>Cold & Cough</h2>
@@ -261,7 +274,12 @@
     <div style="display: flex; justify-content: center; gap: 32px;">
         <div class="emergency-kit-section">
             <h2 class="kit-heading">Emergency Kit Checklist</h2>
-            
+            <!-- <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">0/13 items selected</div>
+            </div>
+
+            <div class="kit-status" id="kitStatus"></div> -->
             <form class="kit-checklist">
                 <label class="kit-option">
                     <input type="checkbox" />
@@ -318,7 +336,7 @@
             </form>
         </div>
         <div class="side-features">
-            <div class="location-share-box">
+            <div class="location-share-box" id="locationShareBox">
                 <div class="header_option">
                     <img src="images/emer-loc.png" alt="Not Found" class="emerLoc-logo" />
                     <h3>Share Emergency Location</h3>
@@ -332,7 +350,7 @@
                 <h3>Find Nearby Hospitals</h3>
             </a>
 
-            <div class="healthy-tips-box">
+            <div class="healthy-tips-box" id="healthyTipsBox">
                 <h3>Daily Healthy Tips</h3>
                 <div class="tip-slider">
                     <span id="healthyTipText">Drinking a glass of warm water in the morning helps flush out toxins,
@@ -377,7 +395,3 @@
 </body>
 
 </html>
-
-
-
-
