@@ -3,11 +3,11 @@ MedAssist is a responsive, user-friendly web application designed to provide cri
 🎯 Why MedAssist?
 In medical emergencies, every second counts. MedAssist eliminates the need for account creation and provides:
 
-⚡ Instant Access - No signup required
-📱 Mobile-First Design - Works seamlessly on all devices
-🌍 Location-Based Services - Find nearby hospitals instantly
-📚 Comprehensive Resources - First aid guides, home remedies, and health tips
-🔒 Privacy-Focused - No data collection or tracking
+⚡ **Instant Access - No signup required
+📱 **Mobile-First Design - Works seamlessly on all devices
+🌍 **Location-Based Services - Find nearby hospitals instantly
+📚 **Comprehensive Resources - First aid guides, home remedies, and health tips
+🔒 **Privacy-Focused - No data collection or tracking
 
 
 ✨ ## Key Features : 
